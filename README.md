@@ -118,3 +118,10 @@ of objects in the scene, while `frameUpdateReceived` is used to redraw the user
 interface once per frame. This design is nice because the order of events causes
 the interface to be redrawn only after each rigid body's location (and rotation)
 are updated.
+
+## Motive settings
+
+Note that the following settings were used with the API
+
+![A picture of Motive settings!](https://github.com/lk-umw-cpsc/rc-car-challenge/blob/master/images/Motive%20Settings.PNG "Settings")
+
