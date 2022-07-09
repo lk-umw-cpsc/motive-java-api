@@ -121,7 +121,8 @@ are updated.
 
 ## Motive settings
 
-Note that the following settings were used with the API
+Note that the following settings were used with the API. This menu
+is accessible via `View -> Data Streaming Pane`.
 
 ![A picture of Motive settings!](https://github.com/lk-umw-cpsc/rc-car-challenge/blob/master/images/Motive%20Settings.PNG "Settings")
 
