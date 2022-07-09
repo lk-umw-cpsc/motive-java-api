@@ -42,7 +42,8 @@ listener interfaces, like so:
 
     public class ExampleListener implements RigidBodyUpdateListener, FrameUpdateListener {
 
-        public void rigidBodyUpdateReceived(int id, float x, float y, float z, float qw,    float qx, float qy, float qz) {
+        public void rigidBodyUpdateReceived(int id, float x, float y, float z, 
+                float qw, float qx, float qy, float qz) {
             // your code here
         }
 
