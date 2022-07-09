@@ -90,7 +90,9 @@ We can adapt the code above to do just that:
     }
 
 This line:
+
     new Thread(m).start(); // kick things off
+
 is where the magic happens. This causes the newly-created `CommandStreamManager`'s
 `run` method to be called from a new thread. A connection to Motive is established
 and your two update received methods will start getting called as Motive sends
