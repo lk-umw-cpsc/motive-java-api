@@ -57,7 +57,7 @@ listener interfaces, like so:
         }
     }
 
-## Creating a CommandStreamManager
+## Creating a `CommandStreamManager`
 
 After implementing the two listeners above, the next step is to create
 a new `CommandStreamManager` object, add your listener to its listener
