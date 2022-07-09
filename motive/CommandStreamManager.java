@@ -10,11 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * CommandStreamManager and neighboring classes define an API
+ * for receiving frame information from Motive version 2.1.1.
+ * 
  * This class is responsible for talking to Motive's UDP server,
  * which runs on localhost (127.0.0.1) on port 1510.
  * 
  * As frames are received by this class, any listeners listening for
- * frame updates are updated.
+ * rigid body and/or frame updates are updated via their "update received"
+ * methods.
  * 
  * The class communicates with Motive via a socket opened on localhost::1512.
  * This port can be changed by updating the value of APPLICATION_PORT.
@@ -126,7 +130,7 @@ public class CommandStreamManager implements Runnable {
      * It also updates the stream manager's rigid body listeners
      * (This is what drives the animation of the panel)
      
-     * Note: this method works with Motive version 2.1.1
+     * Note: this method only supports Motive version 2.1.1
 
      * @param buffer a ByteBuffer passed by run()
      */
@@ -184,40 +188,9 @@ public class CommandStreamManager implements Runnable {
             // get rid of junk in the way
             buffer.getFloat();
             buffer.getShort();
-
-            // determine what direction the body is facing based on the quaternions
-            // this is strictly the rotation along the Z axis
-            // thanks to https://automaticaddison.com/how-to-convert-a-quaternion-to-a-rotation-matrix/
-            // float forwardX = 2 * (quaternions[1] * quaternions[2] + quaternions[0] * quaternions[3]);
-            // float forwardY = 2 * (quaternions[0] * quaternions[0] + quaternions[2] * quaternions[2]) - 1;
-            // float distance = (float) Math.sqrt(forwardX * forwardX + forwardY * forwardY);
-            // if (distance == 0) {
-            //     distance = 1;
-            // }
-
-            // forwardX /= distance;
-            // forwardY /= distance;
-            
-            /*final int rbMarkerCount = buffer.getInt();
-            for (int rbMarker = 0; rbMarker < rbMarkerCount; rbMarker++) {
-                float markerX = buffer.getFloat();
-                float markerY = buffer.getFloat();
-                float markerZ = buffer.getFloat();
-            }
-            System.out.printf("rbMarkerCount: %d\n", rbMarkerCount);
-            
-            for (int rbMarker = 0; rbMarker < rbMarkerCount; rbMarker++) {
-                int markerID = buffer.getInt();
-            }
-
-            for (int rbMarker = 0; rbMarker < rbMarkerCount; rbMarker++) {
-                float markerSize = buffer.getFloat();
-                System.out.printf("Marker size: %.2f\n");
-            }*/
-
-            // float markerError = buffer.getFloat();
         }
-        // below is NOT WORKING... but may not be needed ;)
+        // If needed, skeleton and other scene data can be extracted
+        // by completing the code below.
         // int skeletonCount = buffer.getInt();
         // for (int skeleton = 0; skeleton < skeletonCount; skeleton++) {
         //     int skeletonID = buffer.getInt();
@@ -246,6 +219,7 @@ public class CommandStreamManager implements Runnable {
     }
     
     /**
+     * THIS METHOD IS UNTESTED AND UNFINISHED
      * This method turns the packet byte data into readable, usable data
      * It also updates the stream manager's rigid body listeners
      * (This is what drives the animation of the panel)
@@ -253,7 +227,7 @@ public class CommandStreamManager implements Runnable {
      * Note: this method works with Motive versions 3 or higher
 
      * @param buffer a ByteBuffer passed by run()
-     */
+     *
     private void handleFrameDataV3(ByteBuffer buffer) {
         short bufferSize = buffer.getShort();
         int frameNumber = buffer.getInt();
@@ -354,8 +328,11 @@ public class CommandStreamManager implements Runnable {
             listener.frameUpdateReceived();
         }
     }
+    */
 
     /**
+     * THIS METHOD IS UNTESTED
+     * 
      * This method turns the packet byte data into readable, usable data
      * It also updates the stream manager's rigid body listeners
      * (This is what drives the animation of the panel)
@@ -363,7 +340,7 @@ public class CommandStreamManager implements Runnable {
      * Note: this version works with Motive version 1.10.2 only.
 
      * @param buffer a ByteBuffer passed by run()
-     */
+     *
     private void handleFrameDataV1_10_2(ByteBuffer buffer) {
         short bufferSize = buffer.getShort();
         int frameNumber = buffer.getInt();
@@ -469,6 +446,7 @@ public class CommandStreamManager implements Runnable {
             listener.frameUpdateReceived();
         }
     }
+    */
     
     @Override
     public void run() {
