@@ -6,7 +6,7 @@ The `motive` package defines three classes that allow for receiving
 rigid body data from OptiTrack Motive version 2.1.1.
 
 The code in this project was adapted from the PythonClient
-sample code found in the Motive NatNedSDK. Some minor
+sample code found in the Motive NatNetSDK. Some minor
 reverse engineering was required to determine how to
 adapt the code to version 2.1.1.
 
