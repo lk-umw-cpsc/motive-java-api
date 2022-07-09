@@ -10,6 +10,11 @@ sample code found in the Motive NatNedSDK. Some minor
 reverse engineering was required to determine how to
 adapt the code to version 2.1.1.
 
+Note that this code could be adapted to other versions of Motive by
+viewing the PythonClient code. Additionally, support for other
+frame data, such as skeletons, can be implemented by modifying the code.
+The scope of the UMW project only required rigid body data.
+
 # Using the API
 
 ## Implement appropriate listeners
@@ -25,8 +30,7 @@ can be implemented to know when a frame was received and processed.
 
 A `CommandStreamManager` object will notify all of its `RigidBodyUpdateListener`s
 via their `rigidBodyUpdateReceived` method. This method is called once
-for each rigid body that exists within the frame. The x, y, and z coordinates
-of each rigid body, along with their rotational information in the form of a
+for each rigid body that exists within the frame. The id of each rigid body, its x, y, and z coordinates, and its rotational information in the form of a
 quaternion, are sent in each `rigidBodyUpdateReceived` call.
 
 After rigid body information is finished processing, a `CommanStreamManager` then
@@ -36,13 +40,13 @@ method.
 To use these listener interfaces, simply create a class that implements the two
 listener interfaces, like so:
 
-`public class ExampleListener implements RigidBodyUpdateListener, FrameUpdateListener {`
-` `
-`   public void rigidBodyUpdateReceived(int id, float x, float y, float z, float qw, float qx, float qy, float qz) {`
-`   // your code here`
-    `}`
-` `
-`   public void frameUpdateReceived() {`
-`       // your code here`
-`   }`
-`}`
+    public class ExampleListener implements RigidBodyUpdateListener, FrameUpdateListener {
+
+        public void rigidBodyUpdateReceived(int id, float x, float y, float z, float qw,    float qx, float qy, float qz) {
+            // your code here
+        }
+
+        public void frameUpdateReceived() {
+            // your code here
+        }
+    }
