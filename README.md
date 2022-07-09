@@ -44,12 +44,14 @@ listener interfaces, like so:
 
     public class ExampleListener implements RigidBodyUpdateListener, FrameUpdateListener {
 
+        @Override
         public void rigidBodyUpdateReceived(int id, float x, float y, float z, 
                 float qw, float qx, float qy, float qz) {
             System.out.printf("Rigid body %d moved to %.2f, %.2f, %.2f\n",
                     id, x, y, z);
         }
 
+        @Override
         public void frameUpdateReceived() {
             System.out.println("Frame finished processing");
         }
@@ -74,12 +76,14 @@ We can adapt the code above to do just that:
             new Thread(m).start(); // kick things off
         }
 
+        @Override
         public void rigidBodyUpdateReceived(int id, float x, float y, float z, 
                 float qw, float qx, float qy, float qz) {
             System.out.printf("Rigid body %d moved to %.2f, %.2f, %.2f\n",
                     id, x, y, z);
         }
 
+        @Override
         public void frameUpdateReceived() {
             System.out.println("Frame finished processing");
         }
