@@ -110,8 +110,8 @@ It's also recommended that the `rigidBodyUpdateReceived` method is used to track
 the movement of rigid bodies in the scene, while the `frameUpdateReceived` method
 is used to update the program once rigid body movement has been accounted for.
 
-An example program can be found below:
-https://github.com/lk-umw-cpsc/parking-sim
+An example program can be found at
+https://github.com/lk-umw-cpsc/rc-car-challenge
 
 In the above program, `rigidBodyUpdateReceived` is used to update the location
 of objects in the scene, while `frameUpdateReceived` is used to redraw the user
