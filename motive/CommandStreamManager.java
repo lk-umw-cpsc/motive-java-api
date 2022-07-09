@@ -26,6 +26,20 @@ import java.util.List;
  * Code in the handleFrameData method was adapted from the Motive SDK
  * PythonClient sample.
  * 
+ * To start listening for frame updates, create a new CommandStreamManager
+ * and wrap it in a new Thread object. Then call start() on said Thread:
+ * 
+ * CommandStreamManager m = new CommandStreamManager();
+ * new Thread(m).start();
+ * 
+ * To listen for rigid body and frame updates, implement the
+ * RigidBodyUpdateListener and FrameUpdateListener interfaces and
+ * add your listener to the CommandStreamManager's listener list,
+ * like so:
+ * 
+ * m.addRigidBodyUpdateListener(listener);
+ * m.addFrameUpdateListener(listener);
+ * 
  * @author Lauren Knight
  */
 public class CommandStreamManager implements Runnable {
